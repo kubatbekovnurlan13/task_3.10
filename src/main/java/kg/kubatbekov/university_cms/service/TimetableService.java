@@ -49,7 +49,7 @@ public class TimetableService {
         if (DB_SIZE_OF_SUBJECTS_PROFESSORS == 0
                 && DB_SIZE_OF_GROUPS_SUBJECTS == 0
                 && LESSONS_SIZE == 0) {
-            System.out.println("1");
+//            System.out.println("1");
             List<Lesson> timetable = generateTimetable();
             lessonService.saveAll(timetable);
 
@@ -58,13 +58,13 @@ public class TimetableService {
         } else if (DB_SIZE_OF_SUBJECTS_PROFESSORS != 0
                 && DB_SIZE_OF_GROUPS_SUBJECTS != 0
                 && LESSONS_SIZE == 0) {
-            System.out.println("2");
+//            System.out.println("2");
 
             List<Lesson> newTimetable = generateTimetable();
             lessonService.saveAll(newTimetable);
         } else if (SIZE_OF_SUBJECTS_PROFESSORS > DB_SIZE_OF_SUBJECTS_PROFESSORS
                 || SIZE_OF_GROUPS_SUBJECTS > DB_SIZE_OF_GROUPS_SUBJECTS) {
-            System.out.println("3");
+//            System.out.println("3");
 
             lessonService.deleteAll();
             List<Lesson> newTimetable1 = generateTimetable();

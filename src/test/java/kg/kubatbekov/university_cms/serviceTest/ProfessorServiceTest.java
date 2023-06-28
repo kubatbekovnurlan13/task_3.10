@@ -26,4 +26,11 @@ public class ProfessorServiceTest {
         Assertions.assertNotNull(actual);
     }
 
+    @Test
+    void update_testUpdate_whenThereIsValues() {
+        Professor expected = new Professor(1, "Dr. New P.Smith");
+        Professor actual = professorService.update(expected);
+        Assertions.assertEquals(expected, actual);
+    }
+
 }

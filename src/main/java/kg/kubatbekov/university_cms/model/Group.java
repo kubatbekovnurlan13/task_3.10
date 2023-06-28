@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "groups")
@@ -62,5 +63,18 @@ public class Group {
             subjectsAsString.append(subject.getSubjectName()).append(", ");
         }
         return subjectsAsString.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Group group = (Group) o;
+        return groupId == group.groupId && grade == group.grade && Objects.equals(groupName, group.groupName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(groupId, groupName, grade);
     }
 }

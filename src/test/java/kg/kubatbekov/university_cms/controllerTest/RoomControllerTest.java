@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.file.Path;
@@ -24,8 +25,9 @@ public class RoomControllerTest {
     private RoomService roomService;
 
     @Test
+    @WithMockUser(username = "admin", password = "admin", roles = "ADMIN")
     public void getRooms_testGetRooms_whenMethodReturnsValue() throws Exception {
-        mockMvc.perform(get(Path.of("/rooms").toUri()))
+        mockMvc.perform(get("/rooms"))
                 .andExpect(model().attributeExists("rooms"))
                 .andExpect(status().isOk())
                 .andDo(print());

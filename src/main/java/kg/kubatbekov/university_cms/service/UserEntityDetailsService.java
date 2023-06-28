@@ -38,13 +38,13 @@ public class UserEntityDetailsService implements UserDetailsService {
                 mapRolesToAuthorities(user.get().getRoles()));
     }
 
-    public Collection<? extends GrantedAuthority> mapRolesToAuthorities(String roles) {
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(String roles) {
         return Arrays.stream(roles.split(","))
                 .map(SimpleGrantedAuthority::new)
                 .toList();
     }
 
-    public Optional<UserEntity> findByUsername(String username) {
+    private Optional<UserEntity> findByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
 }

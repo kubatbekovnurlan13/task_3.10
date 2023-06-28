@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "subjects")
@@ -46,5 +47,18 @@ public class Subject {
 
     public int getRandomProfessorId() {
         return this.professors.get((int) (this.professors.size() * Math.random())).getProfessorId();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Subject subject = (Subject) o;
+        return subjectId == subject.subjectId && Objects.equals(subjectCode, subject.subjectCode) && Objects.equals(subjectName, subject.subjectName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(subjectId, subjectCode, subjectName);
     }
 }

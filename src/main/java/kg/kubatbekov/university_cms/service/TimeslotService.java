@@ -20,20 +20,4 @@ public class TimeslotService {
     public List<Timeslot> findAll() {
         return timeslotRepository.findAll();
     }
-
-    public void save(Timeslot timeslot) {
-        timeslotRepository.save(timeslot);
-    }
-
-    public Optional<Timeslot> findById(int id){
-        return timeslotRepository.findById(id);
-    }
-
-    public Timeslot update(Timeslot timeslot) {
-        return timeslotRepository.save(timeslot);
-    }
-
-    public void deleteById(int id) {
-        timeslotRepository.deleteById(id);
-    }
 }

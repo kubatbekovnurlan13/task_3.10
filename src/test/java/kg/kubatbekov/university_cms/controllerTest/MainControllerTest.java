@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.nio.file.Path;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -21,19 +20,9 @@ public class MainControllerTest {
     private TimetableService timetableService;
 
     @Test
+    @WithMockUser(username = "admin", password = "admin", roles = "ADMIN")
     public void getIndex_testGetIndex_whenMethodDoNotReturnsValue() throws Exception {
-        mockMvc.perform(get(Path.of("/").toUri()))
+        mockMvc.perform(get("/"))
                 .andExpect(status().isOk());
     }
-
-//    @Test
-//    public void testIndex() throws Exception {
-//        File login = ResourceUtils.getFile("classpath:templates/mainContollers.html");
-//        String html = new String(Files.readAllBytes(login.toPath()));
-//
-//        this.mockMvc.perform(get(Path.of("/").toUri()))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(html))
-//                .andDo(print());
-//    }
 }

@@ -4,6 +4,7 @@ import kg.kubatbekov.university_cms.model.UserEntity;
 import kg.kubatbekov.university_cms.service.UserService;
 import kg.kubatbekov.university_cms.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
-
     private final UserValidator userValidator;
     private final UserService userService;
 
@@ -25,12 +25,12 @@ public class AuthController {
         this.userService = userService;
     }
 
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/get-users")
     public String getUsers(Model model) {
         model.addAttribute("users", userService.findAll());
         return "auth/users";
     }
-
 
     @GetMapping("/login")
     public String login() {

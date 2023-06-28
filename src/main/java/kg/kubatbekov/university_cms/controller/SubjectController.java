@@ -38,7 +38,6 @@ public class SubjectController {
     @Secured({"ROLE_ADMIN", "ROLE_TEACHER"})
     @GetMapping("/delete")
     public String deleteSubject(@RequestParam int subjectId) {
-        System.out.println("delete subject");
         subjectService.deleteById(subjectId);
         return "redirect:/subject/list";
     }

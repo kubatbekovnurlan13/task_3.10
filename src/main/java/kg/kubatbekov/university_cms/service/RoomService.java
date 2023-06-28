@@ -21,20 +21,4 @@ public class RoomService {
     public List<Room> findAll() {
         return roomRepository.findAll();
     }
-
-    public void save(Room room) {
-        roomRepository.save(room);
-    }
-
-    public Optional<Room> findById(int id) {
-        return roomRepository.findById(id);
-    }
-
-    public Room update(Room room) {
-        return roomRepository.save(room);
-    }
-
-    public void deleteById(int id) {
-        roomRepository.deleteById(id);
-    }
 }

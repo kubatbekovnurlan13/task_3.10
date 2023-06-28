@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "professors")
@@ -42,5 +43,18 @@ public class Professor {
             subjectsAsString.append(subject.getSubjectName()).append(", ");
         }
         return subjectsAsString.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Professor professor = (Professor) o;
+        return professorId == professor.professorId && Objects.equals(professorName, professor.professorName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(professorId, professorName);
     }
 }
